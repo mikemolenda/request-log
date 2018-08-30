@@ -31,19 +31,19 @@ class RequestLogController {
         return Response("Hello ${request?.name ?: "World"}")
     }
 
-//    @RequestMapping("/requests")
-//    fun getRequests(): List<RequestData> {
-//        val query = Query("Request")
-//        val preparedQuery = datastore.prepare(query)
-//        val requests = preparedQuery.asIterable().map {
-//            RequestData(
-//                    endpoint = it.getProperty("endpoint").toString(),
-//                    method = it.getProperty("method").toString()
-//            )
-//        }.toList()
-//
-//        return requests
-//    }
+    @RequestMapping("/requests")
+    fun getRequests(): List<RequestData> {
+        val query = Query("Request")
+        val preparedQuery = datastore.prepare(query)
+        val requests = preparedQuery.asIterable().map {
+            RequestData(
+                    endpoint = it.getProperty("endpoint").toString(),
+                    method = it.getProperty("method").toString()
+            )
+        }.toList()
+
+        return requests
+    }
 
 }
 
