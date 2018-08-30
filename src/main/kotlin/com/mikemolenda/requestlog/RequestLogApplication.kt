@@ -1,11 +1,15 @@
 package com.mikemolenda.requestlog
 
+import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class RequestLogApplication
+class RequestLogApplication {
 
-fun main(args: Array<String>) {
-    runApplication<RequestLogApplication>(*args)
+    companion object {
+        @JvmStatic fun main(args: Array<String>) {
+            SpringApplication.run(RequestLogApplication::class.java, *args)
+        }
+    }
+
 }
