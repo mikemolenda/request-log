@@ -14,16 +14,19 @@ class RequestLogController {
 
     @RequestMapping(value = ["/test"], method = [RequestMethod.GET], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun getDefault(@RequestParam(value = "name", required = false) name: String?): Response {
+        val message = "Hello ${name ?: "World"}"
+
         try {
             val requestEntity = Entity("Request")
             requestEntity.setProperty("endpoint", "/test")
             requestEntity.setProperty("method", "GET")
+            requestEntity.setProperty("message", message)
             datastore.put(requestEntity)
         } catch (npe: NullPointerException) {
             npe.printStackTrace()
         }
 
-        return Response("Hello ${name ?: "World"}")
+        return Response(message)
     }
 
     @RequestMapping(value = ["/test"], method = [RequestMethod.POST], produces = [MediaType.APPLICATION_JSON_VALUE])
